@@ -47,6 +47,8 @@
 
 ## 关于bot命令
 **下面命令只能在私聊Bot时使用，所有命令都未在BotFather注册，你需要手动输入**
+- `/start`: 显示Bot的概述
+- `/ping`: bot会回复pong，检测是否存活的传统操作？
 - `/group`：对同步组操作的主命令
   - `create`：创建同步组命令，必须参数：`-cids [channelId01, channelId02, channelId03 ... ]`
     - 示例`/group create -cids 121312 123123124 124124124`
