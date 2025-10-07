@@ -64,8 +64,13 @@
     - 可选参数：`-lz [true/false]` （lzay的简写），设置同步组的**懒惰模式**。
     - 可选参数：`-da [true/false]`（dropAuthor的简写），设置同步组转发消息时是否携带转发源。
     - 可选参数：`-fz [true/false]`（freeze的缩写），将同步组的所有频道设置为冻结状态（注意，冻结只是不进行同步操作，但频道依旧在同步组内）
+  - `leave`：使Bot退出该关联组内的所有频道
+    - 必选参数：`-gid`，指定一个关联组ID
 - `/channel`：对频道操作的主命令
   - `delete`：使频道退出其所在的同步组。
     - 必须参数：`-cids [channelId01, channelId02]`，要退出所在关联组的频道，可以提供多个频道ID。
   - `freeze`: 冻结频道
-  - 必须参数：`-cids [channelId01, channelId02]`，在当前关联组内冻结指定频道，可以提供多个频道ID。
+    - 必须参数：`-cids [channelId01, channelId02]`，在当前关联组内冻结指定频道，可以提供多个频道ID。
+  - `leave`: 使Bot退出频道
+    - 可选参数：`-all`，Bot退出所有加入的频道属于你的频道。
+    - 可选参数：`-cids [channelId01, channelId02]`，要退出的频道，可以提供多个频道ID。
