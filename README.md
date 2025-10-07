@@ -47,24 +47,25 @@
 
 ## 关于bot命令
 **下面命令只能在私聊Bot时使用，所有命令都未在BotFather注册，你需要手动输入**
-- `/start`: 显示Bot的概述
 - `/ping`: bot会回复pong，检测是否存活的传统操作？
+- `/start`: 显示Bot的概述
 - `/group`：对同步组操作的主命令
-  - `create`：创建同步组命令，必须参数：`-cids [channelId01, channelId02, channelId03 ... ]`
-    - 示例`/group create -cids 121312 123123124 124124124`
-    - `-cids` 是 `--channel-ids` 的缩写，你也可以用全程来代替`-cids`，频道id必须提供2个及以上，但要小于10个。Bot必须加入了所有频道，且为所有频道管理员。你必须为所有频道的创建者。
-  - `add`：将频道加入同步组，必须参数：`-cid [channelId]` `-gid [groupId]`，参数数量必须为1个
-    - `cid`即为频道id，`gid`为同步组id（你可以使用`list`查看gid）
-  - `list`：列出你创建的同步组，可选参数：`-gid [groupid]`, 只支持一个关联组ID
-    - 当不提供关联组ID时 会列出所有你创建的关联组信息
-    - 想查看特定关联组信息时，你可以提供且只能提供一个关联组id来查看
-  - `delete`：删除关联组，必须参数: `-gid [groupid]`，参数数量必须为1个
-    - 当你删除一个关联组时，该关联组内的所有频道都会被删除
-  - `freeze`：冻结同步组，必须参数：`-gid [groupId]`， 参数数量必须为1个
-    - 当你冻结一个同步组时，该同步组内的所有频道都会被冻结
-  - `set`：设置同步组，必须参数：`-gid [groupId]` 可选参数：`-lz [true/false]`，`-da [true/false]`
-    - `-lz` 是 `--lazy` 的缩写，设置为懒惰模式时，Bot默认不转发新消息，除非在消息内添加 #FF 标签临时强制转发
-    - `-da` 是 `--drop-author` 的缩写，设置抛弃转发源时，Bot转发的消息不会携带转发源，就像是手动发送的一样
-- `channel`：对频道操作的主命令
-  - `delete`：使频道退出其所在的同步组，必须参数：`-cid [channelId01, channelId02]`，可以提供多个频道id
-  - `freeze`: 冻结频道，必须参数：`-cid [channelId01, channelId02]`，可以提供多个频道id
+  - `create`：创建同步组命令。
+    - 手动模式：`-cids [channelId01, channelId02, channelId03 ... ]`，`-cids` 是 `--channel-ids` 的缩写，你也可以用全程来代替`-cids`，频道id必须提供2个及以上，但要小于10个。Bot必须加入了所有频道，且为所有频道管理员。你必须为所有频道的创建者。示例`/group create -cids 121312 123123124 124124124`，
+    - 自动模式：`-auto`，会自动将你所拥有的，且Bot已加入的，且没有被且它同组组关键的，且总数不小于2的所有频道自动创建为关联组。你在第一次使用Bot时，使用自动命令很方便。
+  - `add`：将频道加入同步组。
+    - 必须参数：`-cid [channelId]` `-gid [groupId]`，参数数量必须为1个。`cid`即为频道id，`gid`为同步组id（你可以使用`list`查看gid）
+  - `list`：列出你创建的同步组。
+    - 可选参数：`-gid [groupid]`, 只支持一个关联组ID。当不提供关联组ID时（`/group list`）会列出所有你创建的关联组信息。
+  - `delete`：删除关联组。
+    - 必须参数: `-gid [groupid]`，参数数量必须为1个。当你删除一个关联组时，该关联组内的所有频道都会被设置为未关联状态。
+  - `set`：设置同步组的各个选项。
+    - 必须参数：`-gid [groupId]` ，指定要操作的同步组。
+    - 可选参数：`-lz [true/false]` （lzay的简写），设置同步组的**懒惰模式**。
+    - 可选参数：`-da [true/false]`（dropAuthor的简写），设置同步组转发消息时是否携带转发源。
+    - 可选参数：`-fz [true/false]`（freeze的缩写），将同步组的所有频道设置为冻结状态（注意，冻结只是不进行同步操作，但频道依旧在同步组内）
+- `/channel`：对频道操作的主命令
+  - `delete`：使频道退出其所在的同步组。
+    - 必须参数：`-cids [channelId01, channelId02]`，要退出所在关联组的频道，可以提供多个频道ID。
+  - `freeze`: 冻结频道
+  - 必须参数：`-cids [channelId01, channelId02]`，在当前关联组内冻结指定频道，可以提供多个频道ID。
